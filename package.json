@@ -17,10 +17,13 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "migrate:create": "migrate create --template-file ./libs/shared/src/lib/migrate/template/template.ts --migrations-dir=\"./libs/shared/src/lib/migrate/migrations\" --compiler=\"ts:./libs/shared/src/lib/migrate/migrations-utils/ts-compiler.js\"",
+    "migrate:up": "migrate --migrations-dir=./libs/shared/src/lib/migrate/migrations --compiler=ts:./libs/shared/src/lib/migrate/migrations-utils/ts-compiler.js up"
   },
   "dependencies": {
     "@elastic/elasticsearch": "^8.13.1",
+    "@faker-js/faker": "^8.4.1",
     "@nestjs/common": "^10.0.0",
     "@nestjs/config": "^3.2.2",
     "@nestjs/core": "^10.0.0",
@@ -28,6 +31,7 @@
     "@nestjs/mapped-types": "*",
     "@nestjs/mongoose": "^10.0.6",
     "@nestjs/platform-express": "^10.0.0",
+    "axios": "^1.7.2",
     "joi": "^17.13.1",
     "migrate": "^2.1.0",
     "mongoose": "^7.6.11",

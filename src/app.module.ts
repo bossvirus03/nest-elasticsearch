@@ -22,16 +22,7 @@ import * as Joi from 'joi';
       inject: [ConfigService],
     }),
     ConfigModule.forRoot({
-      expandVariables: true,
       isGlobal: true,
-      validationSchema: Joi.object({
-        MONGODB_URI: Joi.string().required(),
-        ELASTICSEARCH_NODE: Joi.string().required(),
-        ELASTICSEARCH_USERNAME: Joi.string().required(),
-        ELASTICSEARCH_PASSWORD: Joi.string().required(),
-        ELASTICSEARCH_INDEX: Joi.string().required(),
-        // ELASTICSEARCH_TYPE: Joi.string().required(),
-      }),
     }),
     UserModule,
     SearchModule,

@@ -1,11 +1,10 @@
 import { Injectable, OnModuleInit } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { ElasticsearchService } from '@nestjs/elasticsearch';
 import { User } from './schemas/user.schema';
 import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
 import { SearchService } from 'src/search/search.service';
+import { EsIndex } from 'libs/shared/src/lib/enums/esIndex';
 
 @Injectable()
 export class UserService {
@@ -17,8 +16,7 @@ export class UserService {
     const createdUser = new this.userModel(createUserDto);
 
     await createdUser.save();
-    await this.searchService.indexUser(createdUser);
-    console.log('es [user] created');
+    await this.searchService.insertDocToIndex(EsIndex.USERS, createdUser);
     return createdUser;
   }
 }

@@ -30,16 +30,4 @@ import { SearchService } from './search.service';
   providers: [SearchService],
   exports: [SearchService, ElasticsearchModule],
 })
-export class SearchModule implements OnModuleInit {
-  constructor(public readonly elasticsearchService: ElasticsearchService) {}
-  async onModuleInit() {
-    await this.elasticsearchService
-      .ping({})
-      .then(() => {
-        Logger.log('Connect elasticsearch done');
-      })
-      .catch((err) => {
-        Logger.log('Connect elasticsearch error', err);
-      });
-  }
-}
+export class SearchModule {}
